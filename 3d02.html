@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+    }
+    .container{
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        transform-style: preserve-3d;
+        perspective: 800px;
+        perspective-origin: 50% 50%;
+    }
+    .wrapper {
+        transform-style: preserve-3d;
+        box-sizing: border-box;
+        width: 350px;
+        height: 350px;
+        transition-duration: 2s;
+     }
+    .panel {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        opacity: 0.4;
+        box-sizing: border-box;
+        border: 1px solid slategrey;
+    }
+
+    .p1{
+        background-color: burlywood;
+        transform: translateZ(175px);
+    }
+    .p2{
+        background-color: chocolate;
+        transform: translateZ(-175px);
+    }
+    .p3{
+        background-color: coral;
+        transform: rotateY(90deg) translateZ(-175px);
+    }
+    .p4{
+        background-color: cadetblue;
+        transform: rotateY(90deg) translateZ(175px);
+    }
+    .p5{
+        background-color: firebrick;
+        transform: rotateX(90deg) translateZ(-175px);
+    }
+    .p6{
+        background-color: mediumorchid;
+        transform: rotateX(90deg) translateZ(175px);
+    }
+
+    /*첫번째 면을 보겠다!*/
+    .f1{
+        /*transform: rotateX(45deg) rotateY(45deg);*/
+    }
+    .f2{
+        transform: rotateX(180deg)
+    }
+    .f3 {
+        transform: rotateY(90deg);
+    }
+    .f4{
+        transform: rotateY(-90deg);
+    }
+    .f5{
+        transform: rotateX(-90deg);
+    }
+    .f6{
+        transform: rotateX(90deg);
+    }
+
+</style>
+
+<div class="container">
+    <div class="wrapper f1">
+        <div class="panel p1"><video src="review.mp4" autoplay></video></div>
+        <div class="panel p2"><video src="review.mp4" autoplay></video></div>
+        <div class="panel p3"><video src="review.mp4" autoplay></video></div>
+        <div class="panel p4"><video src="review.mp4" autoplay></video></div>
+        <div class="panel p5"><video src="review.mp4" autoplay></video></div>
+        <div class="panel p6"><video src="review.mp4" autoplay></video></div>
+    </div>
+</div>
+
+<script>
+    var wrapper = document.querySelector(".wrapper");
+
+    document.querySelector("body")
+        .addEventListener("click", () => {
+            console.log("clicked!!!!!!!!!!!");
+            var num = parseInt(Math.random() * 6) + 1;
+            console.log(num);
+
+            //돌리기 위해
+            var className = "f" + num;
+            wrapper.setAttribute("class", "wrapper " + className);
+
+        }, false);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+
+    .main {
+        height: 80vh;
+    }
+
+    .footer {
+        height: 20vh;
+        bottom: 0px;
+    }
+
+    .footer img {
+        width: 100px;
+    }
+
+    .footer img:hover {
+        transform: scale(1.5);
+        transform-origin: bottom;
+        transition-duration: 0.5s;
+
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center
+    }
+</style>
+
+<div class="container">
+    <div class="main">
+        MAIN
+    </div>
+    <div class="footer">
+        <img src="samples/01.jpg">
+        <img src="samples/02.jpg">
+        <img src="samples/03.jpg">
+        <img src="samples/04.jpg">
+    </div>
+</div>
+
+</body>
+</html>
