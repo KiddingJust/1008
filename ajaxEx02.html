@@ -28,39 +28,36 @@
 
 <div id="demo">
     <h2>Let AJAX change this text</h2>
-    <button type="button" onclick="loadDoc(95)">가익</button>
-    <button type="button" onclick="loadDoc(96)">연훈</button>
-    <button type="button" onclick="loadDoc(97)">가영</button>
-    <button type="button" onclick="loadDoc(86)">고니</button>
-    <button type="button" onclick="loadDoc(87)">지잉</button>
+    <button type="button" onclick="loadDoc()" >Change Content</button>
 </div>
 
-<div >
-    <td id="question" value=""></td>
-    <td id ="options" value=""></td>
-</div>
 <script>
-    function loadDoc(ip) {
+    function loadDoc() {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
 
             console.log(xhttp.readyState);
 
             if (this.readyState == 4 && this.status == 200) {
-                // document.getElementById("demo").innerHTML = this.responseText;
+                // document.getElementById("demo").innerHTMLTML = this.responseText;
                 // var xmlDoc = this.responseXML;
                 // console.log(xmlDoc.querySelector("#b1"));
-
-                //this 라는 단어 대신에, xhttp라는 단어를 쓰면 됨.
                 var text = JSON.parse(this.responseText);
+                var text2 = JSON.stringify(text.DESCRIPTION);
+
+                document.getElementById("demo").innerHTML = text2
+                for(str of text.DATA){
+                    var text = JSON.stringify(str);
+                    document.getElementById("demo").innerHTML += text;
+                }
+                //this 라는 단어 대신에, xhttp라는 단어를 쓰면 됨.
                 console.log(text);
-                console.log(text.text);
-                document.querySelector("#question").value = text.text;
-                document.querySelector("#options").value = text.options;
+                // console.log(text2);
+                // var text2 = JSON.stringify(this.responseText);
 
             }
         };
-        xhttp.open("GET", "http://10.10.10." + ip + ":8080/jsonEx/quiz", true);
+        xhttp.open("GET", "subway.json", true);
         xhttp.send();
     }
 </script>

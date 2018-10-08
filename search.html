@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>블로그 검색페이지</h2>
+검색어 입력 : <input type="text" name="search" size="40"/>
+<input type="button" value="검색"/><br/>
+<h4>검색결과</h4>
+<div id="searchResult"></div>
+
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+
+    $(document).ready(function(){
+        $(":button").click(function(){
+            $.ajax({
+                url: "https://apis.daum.net/search/blog",
+                type: "get",
+                data: {
+                    apikey: "8392c8baf0d0c5aa5ba40677ff1e40e2",
+                    q:'알고리즘',
+                    result: 5,
+                    output: "json"
+                },
+                dataType: "jsonp",
+                success: callback,
+                error: function(){
+                    alert('error');
+                }
+            });
+        });
+    });
+    function callback(data){
+        var itemList = data.channel.item;
+        for(var i=0; i<itemList.length; i++){
+            var item = itemList[i];
+            var title = item.title;
+            var link = item.link;
+            var desc = item.description;
+
+            $('#searchResult').append('<hr/>');
+            $('#searchResult').append("<a href='" + link + "'>" + title + "</a>");
+            $('#searchResult').append("<br/>");
+            $('#searchResult').append(desc + '<br/>')
+            $('#searchResult').append('<hr/>');
+        }
+    }
+</script>
+
+
+</body>
+
+</html>
